@@ -10,7 +10,7 @@ public class DelaysData implements Serializable {
     }
 
     public DelaysData(String line) {
-        
+        String[] 
     }
 
     public Float getMax() {
