@@ -8,7 +8,7 @@ public class AirportsSparkMain {
         JavaSparkContext sc = new JavaSparkContext(conf);
 
         JavaRDD<String> airportsFile = sc.textFile("war-and-peace-1.txt");
-        JavaRDD<String> onTimeFile = sc.textFile("war-and-peace-1.txt");
+        JavaRDD<String> onTimeFile = sc.textFile("664600583_T_ONTIME_sample");
 
     }
 }
