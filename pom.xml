@@ -45,7 +45,8 @@
 		<plugin>
 			<groupId>org.apache.maven.plugins</groupId>
 			<artifactId>maven-shade-plugin</artifactId>
-			<executions>
+            <version></version>
+            <executions>
 				<execution>
 					<goals>
 						<goal>shade</goal>
