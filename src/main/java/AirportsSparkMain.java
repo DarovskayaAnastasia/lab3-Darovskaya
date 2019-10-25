@@ -20,17 +20,17 @@ public class AirportsSparkMain {
         JavaRDD<String> onTimeFile = sc.textFile("664600583_T_ONTIME_sample.csv");
 
         JavaPairRDD<Integer, String> nameIdPair = airportsFile.mapToPair(s -> {
-            Integer airportID = Integer.parseInt(parseLine(s, 0));
-            String airportName = parseLine(s, 1);
+            Integer airportID = Integer.parseInt(parseLine(s, Common.AIRPORT_ID_ROW));
+            String airportName = parseLine(s, Common.AIRPORT_NAME_ROW);
             return new Tuple2<>(airportID, airportName);
         });
 
         Map<Integer, String> nameIdMap = nameIdPair.collectAsMap();
 
         JavaPairRDD<Tuple2<Integer, Integer>, String> arrivalDepartureDelayPair = onTimeFile.mapToPair(s -> {
-            Integer arrivalID = Integer.parseInt(parseLine(s, 14));
-            Integer departureID = Integer.parseInt(parseLine(s, 11));
-            String delay = parseLine(s, 18);
+            Integer arrivalID = Integer.parseInt(parseLine(s, Common.ARRIVAL_AIRPORT_ID_ROW));
+            Integer departureID = Integer.parseInt(parseLine(s, Common.DEPARTURE_AIRPORT_ID_ROW));
+            String delay = parseLine(s, Common.DELAY_ROW);
             return new Tuple2<>(new Tuple2<>(arrivalID, departureID), delay);
         });
 
