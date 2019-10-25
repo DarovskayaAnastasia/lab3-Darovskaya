@@ -34,7 +34,7 @@ public class AirportsSparkMain {
             return new Tuple2<>(new Tuple2<>(arrivalID, departureID), delay);
         });
 
-        
+
 
 //        final Broadcast<Map<String, AirportData>> airportsBroadcasted = sc.broadcast(stringAirportDataMap);
 
