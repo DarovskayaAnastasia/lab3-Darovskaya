@@ -9,6 +9,6 @@ public class AirportsSparkMain {
 
         JavaRDD<String> airportsFile = sc.textFile("war-and-peace-1.txt");
         JavaRDD<String> onTimeFile = sc.textFile("war-and-peace-1.txt");
-        
+
     }
 }
