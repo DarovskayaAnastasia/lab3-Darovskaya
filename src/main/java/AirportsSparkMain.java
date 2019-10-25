@@ -22,7 +22,7 @@ public class AirportsSparkMain {
                                                                              String airportName = parseLine(s, 1);
                                                                              return new Tuple2<>(airportID, airportName);});
 
-        Map<>
+        Map<Integer, String>
 //        final Broadcast<Map<String, AirportData>> airportsBroadcasted = sc.broadcast(stringAirportDataMap);
 
 
