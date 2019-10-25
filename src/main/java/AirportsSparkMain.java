@@ -19,13 +19,22 @@ public class AirportsSparkMain {
         JavaRDD<String> airportsFile = sc.textFile("L_AIRPORT_ID.csv");
         JavaRDD<String> onTimeFile = sc.textFile("664600583_T_ONTIME_sample.csv");
 
-        JavaPairRDD<Integer, String> nameIdPair = airportsFile.mapToPair(s -> { Integer airportID = Integer.parseInt(parseLine(s, 0));
-                                                                             String airportName = parseLine(s, 1);
-                                                                             return new Tuple2<>(airportID, airportName);});
+        JavaPairRDD<Integer, String> nameIdPair = airportsFile.mapToPair(s -> {
+            Integer airportID = Integer.parseInt(parseLine(s, 0));
+            String airportName = parseLine(s, 1);
+            return new Tuple2<>(airportID, airportName);
+        });
 
         Map<Integer, String> nameIdMap = nameIdPair.collectAsMap();
 
-        JavaPairRDD<Tuple2, String> arrivalDepartureDelayPair =
+        JavaPairRDD<Tuple2<Integer, Integer>, String> arrivalDepartureDelayPair = onTimeFile.mapToPair(s -> {
+            Integer arrivalID = Integer.parseInt(parseLine(s, 14));
+            Integer departureID = Integer.parseInt(parseLine(s, 11));
+            String delay = parseLine(s, 18);
+            return new Tuple2<>(new Tuple2<>(arrivalID, departureID), delay);
+        });
+
+        
 
 //        final Broadcast<Map<String, AirportData>> airportsBroadcasted = sc.broadcast(stringAirportDataMap);
 
