@@ -1,2 +1,4 @@
-public class DelaysData implements {
+import java.io.Serializable;
+
+public class DelaysData implements Serializable {
 }
