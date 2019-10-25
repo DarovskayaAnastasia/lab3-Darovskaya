@@ -1,2 +1,2 @@
-public class DelaysData {
+public class DelaysData implements {
 }
