@@ -24,6 +24,8 @@ public class AirportsSparkMain {
 
 //        final Broadcast<Map<String, AirportData>> airportsBroadcasted = sc.broadcast(stringAirportDataMap);
 
+        
+
     }
 
     private static String parseLine(String line, int numberOfRow) throws IOException {
@@ -38,8 +40,5 @@ public class AirportsSparkMain {
         return result;
     }
 
-    void collectAsMap() {
-        
-    }
 
 }
