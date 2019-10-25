@@ -10,8 +10,8 @@ public class DelaysData implements Serializable {
     }
 
     public DelaysData(String line) {
-        Integer totalCount = 0;
-        Integer canceledAndDelayedCount = 0;
+        Float totalCount = 0f;
+        Float canceledAndDelayedCount = 0f;
         Float max = Float.MIN_VALUE;
         String[] delays = line.split(" ");
         for (String delay : delays) {
@@ -28,7 +28,7 @@ public class DelaysData implements Serializable {
         }
 
         this.max = max;
-        this.percent = 
+        this.percent = canceledAndDelayedCount*100/totalCount;
 
     }
 
