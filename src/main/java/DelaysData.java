@@ -1,2 +1,2 @@
-public class SomeIbject {
+public class DelaysData {
 }
