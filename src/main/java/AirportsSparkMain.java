@@ -25,7 +25,7 @@ public class AirportsSparkMain {
 
         Map<Integer, String> nameIdMap = nameIdPair.collectAsMap();
 
-        JavaPairRDD<Tuple2, String> arrival
+        JavaPairRDD<Tuple2, String> arrivalDepartureDelayPair =
 
 //        final Broadcast<Map<String, AirportData>> airportsBroadcasted = sc.broadcast(stringAirportDataMap);
 
