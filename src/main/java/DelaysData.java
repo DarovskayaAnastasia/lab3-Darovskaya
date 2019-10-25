@@ -64,6 +64,9 @@ public class DelaysData implements Serializable {
          departureAirportName = airportsNames.get(departureAirportID);
     }
 
-    public
+    @Override
+    public String toString() {
+        return "Arrival airport: " + arrivalAirportName + "\n Departure airport: " + departureAirportName + "\n max: " + max + "; percent: " + percent;
+    }
 
 }
