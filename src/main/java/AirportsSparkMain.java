@@ -18,18 +18,17 @@ public class AirportsSparkMain {
         JavaRDD<String> airportsFile = sc.textFile("L_AIRPORT_ID.csv");
         JavaRDD<String> onTimeFile = sc.textFile("664600583_T_ONTIME_sample.csv");
 
-//        JavaPairRDD<String, Long> nameIDpair = airportsFile.mapToPair(s -> {} new Tuple2<>(airportID, airportName));
+        JavaPairRDD<String, Long> nameIDpair = airportsFile.mapToPair(s -> {String airportID = parseLine(s, 0)} new Tuple2<>(airportID, airportName));
 
     }
 
-    private String[] parseLine(String line) throws IOException {
+    private String parseLine(String line, int numberOfRow) throws IOException {
 
-        String[] result = new String[2];
+        String result = new String;
 
         CSVParser parser = CSVParser.parse(line, CSVFormat.RFC4180);
         for (CSVRecord record : parser) {
-            result[0] = record.get(0);
-            result[1] = record.get(1);
+            result = record.get(numberOfRow);
         }
 
         return result;
