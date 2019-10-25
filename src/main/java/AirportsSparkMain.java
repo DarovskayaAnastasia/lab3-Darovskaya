@@ -43,9 +43,13 @@ public class AirportsSparkMain {
 
         final Broadcast<Map<Integer, String>> airportsBroadcasted = sc.broadcast(nameIdMap);
 
-        JavaRDD<ParsedData> splitted = distFile.map(s -> new ParsedData(s, airportsBroadcasted.value()));
+        JavaRDD<DelaysData> result = reducedData.map(s -> {
+            DelaysData delaysWithAirports = s._2();
+            delaysWithAirports.setAirports(s._1(), airportsBroadcasted.value());
+            return delaysWithAirports;
+        });
 
-
+        result.saveAsTextFile("output");
 
     }
 
