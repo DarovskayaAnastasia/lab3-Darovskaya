@@ -9,11 +9,16 @@ public class DelaysData implements Serializable {
         this.percent = 0f;
     }
 
-    public DelaysData(String linerx) {
-        this.max = max;
-        this.percent = percent;
+    public DelaysData(String line) {
+        
     }
 
-    public Float
+    public Float getMax() {
+        return this.max;
+    }
+
+    public Float getPercent() {
+        return  this.percent;
+    }
 
 }
