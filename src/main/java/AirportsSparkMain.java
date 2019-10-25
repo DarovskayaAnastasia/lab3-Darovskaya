@@ -10,5 +10,7 @@ public class AirportsSparkMain {
         JavaRDD<String> airportsFile = sc.textFile("L_AIRPORT_ID.csv");
         JavaRDD<String> onTimeFile = sc.textFile("664600583_T_ONTIME_sample.csv");
 
+        
+
     }
 }
