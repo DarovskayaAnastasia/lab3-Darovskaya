@@ -7,8 +7,8 @@ public class AirportsSparkMain {
         SparkConf conf = new SparkConf().setAppName("lab3");
         JavaSparkContext sc = new JavaSparkContext(conf);
 
-        JavaRDD<String> airportsFile = sc.textFile("war-and-peace-1.txt");
-        JavaRDD<String> onTimeFile = sc.textFile("664600583_T_ONTIME_sample");
+        JavaRDD<String> airportsFile = sc.textFile("L_AIRPORT_ID.csv");
+        JavaRDD<String> onTimeFile = sc.textFile("664600583_T_ONTIME_sample.csv");
 
     }
 }
