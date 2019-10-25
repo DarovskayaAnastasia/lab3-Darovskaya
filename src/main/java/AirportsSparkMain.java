@@ -18,13 +18,14 @@ public class AirportsSparkMain {
         JavaRDD<String> airportsFile = sc.textFile("L_AIRPORT_ID.csv");
         JavaRDD<String> onTimeFile = sc.textFile("664600583_T_ONTIME_sample.csv");
 
-        JavaPairRDD<String, Long> nameIDpair = airportsFile.mapToPair(s -> { String airportID = parseLine(s, 0);
-                                                                             Long airportName = Long.parseLong(parseLine(s, 1));
+        JavaPairRDD<String, String> nameIDpair = airportsFile.mapToPair(s -> { String airportID = parseLine(s, 0);
+                                                                             String airportName = parseLine(s, 1);
                                                                              return new Tuple2<>(airportID, airportName);});
 
+        Map<>
 //        final Broadcast<Map<String, AirportData>> airportsBroadcasted = sc.broadcast(stringAirportDataMap);
 
-        
+
 
     }
 
