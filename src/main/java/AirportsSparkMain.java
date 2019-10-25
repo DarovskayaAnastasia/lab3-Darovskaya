@@ -22,7 +22,7 @@ public class AirportsSparkMain {
                                                                              Long airportName = Long.parseLong(parseLine(s, 1));
                                                                              return new Tuple2<>(airportID, airportName);});
 
-        
+//        final Broadcast<Map<String, AirportData>> airportsBroadcasted = sc.broadcast(stringAirportDataMap);
 
     }
 
@@ -36,6 +36,10 @@ public class AirportsSparkMain {
         }
 
         return result;
+    }
+
+    void collectAsMap() {
+        
     }
 
 }
