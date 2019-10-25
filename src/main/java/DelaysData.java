@@ -10,15 +10,19 @@ public class DelaysData implements Serializable {
     }
 
     public DelaysData(String line) {
+        Integer count = null;
+        Integer canceledAndDelayed
         Float max = Float.MIN_VALUE;
         String[] delays = line.split(" ");
         for (String delay : delays) {
+            count++;
             if (!delay.equals(" ")) {
                 if (Float.parseFloat(delay) > max) {
                     max = Float.parseFloat(delay);
                 }
             }
         }
+
     }
 
     public Float getMax() {
