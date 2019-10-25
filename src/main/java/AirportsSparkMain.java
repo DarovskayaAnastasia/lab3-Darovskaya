@@ -23,7 +23,7 @@ public class AirportsSparkMain {
                                                                              String airportName = parseLine(s, 1);
                                                                              return new Tuple2<>(airportID, airportName);});
 
-        Map<Integer, String> nameIdMap = airportsFile.collectAsMap()
+        Map<Integer, String> nameIdMap = nameIdPair.collectAsMap();
 
 //        final Broadcast<Map<String, AirportData>> airportsBroadcasted = sc.broadcast(stringAirportDataMap);
 
