@@ -18,7 +18,7 @@ public class AirportsSparkMain {
         JavaRDD<String> airportsFile = sc.textFile("L_AIRPORT_ID.csv");
         JavaRDD<String> onTimeFile = sc.textFile("664600583_T_ONTIME_sample.csv");
 
-        JavaPairRDD<String, String> nameIDpair = airportsFile.mapToPair(s -> { String airportID = parseLine(s, 0);
+        JavaPairRDD<Integer, String> nameIDpair = airportsFile.mapToPair(s -> { Integer airportID = Integer.parseInt(parseLine(s, 0));
                                                                              String airportName = parseLine(s, 1);
                                                                              return new Tuple2<>(airportID, airportName);});
 
