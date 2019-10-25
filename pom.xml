@@ -44,7 +44,7 @@
             </plugin>
 		<plugin>
 			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>ma</artifactId>
+			<artifactId>maven-shade-plugin</artifactId>
 			<executions>
 				<execution>
 					<goals>
