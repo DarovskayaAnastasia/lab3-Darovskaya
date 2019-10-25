@@ -19,7 +19,7 @@ launch_stage:
 	hadoop jar ~/hadoop-2.9.2/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.9.2.jar pi 2 5
 	hadoop fs -copyFromLocal src/main/resources/664600583_T_ONTIME_sample.csv
 	hadoop fs -copyFromLocal src/main/resources/L_AIRPORT_ID.csv
-	spark-submit --class AirportsSparkMain --master yarn-client --num-executors 3  hadoop-examples-1.0-SNAPSHOT-shaded
+	spark-submit --class AirportsSparkMain --master yarn-client --num-executors 3 home/michail/gitwatch/lab3-Darovskaya/target/hadoop-examples-1.0-SNAPSHOT-shaded.jar
 	hadoop fs -copyToLocal output
 
 clean:
