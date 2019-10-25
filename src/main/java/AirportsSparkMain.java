@@ -9,6 +9,7 @@ import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
 import java.io.IOException;
+import java.util.Map;
 
 public class AirportsSparkMain {
     public static void main(String[] args) {
