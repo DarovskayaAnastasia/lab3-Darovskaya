@@ -4,6 +4,10 @@ import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import scala.Tuple2;
 
+import org.apache.commons.
+
+import java.io.IOException;
+
 public class AirportsSparkMain {
     public static void main(String[] args) {
         SparkConf conf = new SparkConf().setAppName("lab3");
@@ -15,4 +19,18 @@ public class AirportsSparkMain {
 //        JavaPairRDD<String, Long> nameIDpair = airportsFile.mapToPair(s -> {} new Tuple2<>(airportID, airportName));
 
     }
+
+    private String[] parseLine(String line) throws IOException {
+
+        String[] result = new String[2];
+
+        CSVParser parser = CSVParser.parse(line, CSVFormat.RFC4180);
+        for (CSVRecord record : parser) {
+            result[0] = record.get(0);
+            result[1] = record.get(1);
+        }
+
+        return result;
+    }
+
 }
