@@ -43,6 +43,8 @@ public class AirportsSparkMain {
 
         final Broadcast<Map<Integer, String>> airportsBroadcasted = sc.broadcast(nameIdMap);
 
+        JavaRDD<ParsedData> splitted = distFile.map(s -> new ParsedData(s, airportsBroadcasted.value()));
+
 
 
     }
