@@ -70,12 +70,12 @@ public class AirportsSparkMain {
         if (numberOfRow == Common.AIRPORT_ID_ROW || numberOfRow == Common.AIRPORT_NAME_ROW) {
             String[] rows = line.split("\",");
             for (int i = 0; i < rows.length; ++i) {
-                rows[i] = rows[i].replace("\"", "");
+                rows[i] = rows[i].replaceAll("\"", "");
             }
             return rows[numberOfRow];
         }
         else {
-            String[] rows = line.replace("\"", " ").split(",");
+            String[] rows = line.replaceAll("\"", " ").split(",");
             return rows[numberOfRow];
         }
     }
