@@ -4,15 +4,16 @@ import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.broadcast.Broadcast;
 import scala.Tuple2;
-
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVParser;
-import org.apache.commons.csv.CSVRecord;
-
-import java.io.IOException;
+//
+//import org.apache.commons.csv.CSVFormat;
+//import org.apache.commons.csv.CSVParser;
+//import org.apache.commons.csv.CSVRecord;
+//
+//import java.io.IOException;
 import java.util.Map;
 
 public class AirportsSparkMain {
+
     public static void main(String[] args) {
         SparkConf conf = new SparkConf().setAppName("lab3");
         JavaSparkContext sc = new JavaSparkContext(conf);
@@ -53,17 +54,25 @@ public class AirportsSparkMain {
 
     }
 
-    private static String parseLine(String line, int numberOfRow) throws IOException {
+//    private static String parseLine(String line, int numberOfRow) throws IOException {
+//
+//        String result = "";
+//
+//        CSVParser parser = CSVParser.parse(line, CSVFormat.RFC4180);
+//        for (CSVRecord record : parser) {
+//            result = record.get(numberOfRow);
+//        }
+//
+//        return result;
+//    }
 
-        String result = "";
-
-        CSVParser parser = CSVParser.parse(line, CSVFormat.RFC4180);
-        for (CSVRecord record : parser) {
-            result = record.get(numberOfRow);
+    private static String parseLine(String line, int numberOfRow) {
+        if (numberOfRow == Common.AIRPORT_ID_ROW || numberOfRow == Common.AIRPORT_NAME_ROW) {
+            String[] rows = line.replace("\"", " ").split(" ,");
         }
-
-        return result;
+        else {
+            String[] rows = line.replace("\"", " ").split(",");
+        }
     }
-
 
 }
