@@ -69,9 +69,11 @@ public class AirportsSparkMain {
     private static String parseLine(String line, int numberOfRow) {
         if (numberOfRow == Common.AIRPORT_ID_ROW || numberOfRow == Common.AIRPORT_NAME_ROW) {
             String[] rows = line.replace("\"", " ").split(" ,");
+            return rows[numberOfRow];
         }
         else {
             String[] rows = line.replace("\"", " ").split(",");
+            return rows[numberOfRow];
         }
     }
 
