@@ -21,7 +21,11 @@ public class AirportsSparkMain {
         JavaRDD<String> airportsFile = sc.textFile("L_AIRPORT_ID.csv");
         JavaRDD<String> onTimeFile = sc.textFile("664600583_T_ONTIME_sample.csv");
 
-        JavaPairRDD<Integer, String> nameIdPair = airportsFile.mapToPair(s -> {
+        JavaRDD<String> airportsWithoutHeader = removeCSVHeader(airportsFile);
+        JavaRDD<String> onTimeWithoutHeader = removeCSVHeader(onTimeFile);
+
+
+        JavaPairRDD<Integer, String> nameIdPair = airportsWithoutHeader.mapToPair(s -> {
             Integer airportID = Integer.parseInt(parseLine(s, Common.AIRPORT_ID_ROW));
             String airportName = parseLine(s, Common.AIRPORT_NAME_ROW);
             return new Tuple2<>(airportID, airportName);
@@ -29,7 +33,7 @@ public class AirportsSparkMain {
 
         Map<Integer, String> nameIdMap = nameIdPair.collectAsMap();
 
-        JavaPairRDD<Tuple2<Integer, Integer>, String> arrivalDepartureDelayPair = onTimeFile.mapToPair(s -> {
+        JavaPairRDD<Tuple2<Integer, Integer>, String> arrivalDepartureDelayPair = onTimeWithoutHeader.mapToPair(s -> {
             Integer arrivalID = Integer.parseInt(parseLine(s, Common.ARRIVAL_AIRPORT_ID_ROW));
             Integer departureID = Integer.parseInt(parseLine(s, Common.DEPARTURE_AIRPORT_ID_ROW));
             String delay = parseLine(s, Common.DELAY_ROW);
@@ -54,7 +58,7 @@ public class AirportsSparkMain {
 
     }
 
-//    private static String parseLine(String line, int numberOfRow) throws IOException {
+//    private static final String parseLine(String line, int numberOfRow) throws IOException {
 //
 //        String result = "";
 //
@@ -66,7 +70,7 @@ public class AirportsSparkMain {
 //        return result;
 //    }
 
-    private static String parseLine(String line, int numberOfRow) {
+    private static final String parseLine(String line, int numberOfRow) {
         if (numberOfRow == Common.AIRPORT_ID_ROW || numberOfRow == Common.AIRPORT_NAME_ROW) {
             String[] rows = line.split("\",");
             for (int i = 0; i < rows.length; ++i) {
@@ -78,6 +82,11 @@ public class AirportsSparkMain {
             String[] rows = line.replaceAll("\"", " ").split(",");
             return rows[numberOfRow];
         }
+    }
+
+    private static final JavaRDD<String> removeCSVHeader(JavaRDD<String> csvFile) {
+        String header = csvFile.first();
+        return csvFile.filter(line -> !line.equals(header));
     }
 
 }
