@@ -44,7 +44,7 @@ public class AirportsSparkMain {
                 (a, b) -> a + " " + b
         );
 
-        JavaPairRDD<Tuple2<Integer, Integer>, DelaysData> reducedData = collectedAirports.mapToPair(s-> new Tuple2<>(s._1(), new DelaysData(s._2())));
+        JavaPairRDD<Tuple2<Integer, Integer>, DelaysData> reducedData = collectedAirports.mapToPair(s -> new Tuple2<>(s._1(), new DelaysData(s._2())));
 
         final Broadcast<Map<Integer, String>> airportsBroadcasted = sc.broadcast(nameIdMap);
 
@@ -77,9 +77,8 @@ public class AirportsSparkMain {
                 rows[i] = rows[i].replaceAll("\"", "");
             }
             return rows[numberOfRow];
-        }
-        else {
-            String[] rows = line.replaceAll("\"", " ").split(",");
+        } else {
+            String[] rows = line.replaceAll("\"", "").split(",");
             return rows[numberOfRow];
         }
     }
