@@ -36,7 +36,7 @@ public class DelaysData implements Serializable {
             Float floatDelay = Float.parseFloat(delay);
             if (floatDelay != 0) {
                 canceledAndDelayedCount++;
-                if (!delay.equals(" ")) {
+                if (!delay.equals("")) {
                     if (floatDelay > max) {
                         max = floatDelay;
                     }
