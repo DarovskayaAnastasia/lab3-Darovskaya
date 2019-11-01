@@ -1,7 +1,7 @@
 NAMENODE_CURRENT = home/michail/hdata/namenode/current
 DATANODE_CURRENT = home/michail/hdata/datanode/current
-OUTPUT = gitwatch/lab2-Darovskaya/output
-TARGET = gitwatch/lab2-Darovskaya/target
+OUTPUT = gitwatch/lab3-Darovskaya/output
+TARGET = gitwatch/lab3-Darovskaya/target
 
 
 .PHONY: all hadoop_stage launch_stage clean
