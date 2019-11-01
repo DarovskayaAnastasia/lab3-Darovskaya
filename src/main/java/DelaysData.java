@@ -33,10 +33,10 @@ public class DelaysData implements Serializable {
         String[] delays = line.split(" ");
         for (String delay : delays) {
             totalCount++;
-            Float floatDelay = Float.parseFloat(delay);
-            if (floatDelay != 0) {
-                canceledAndDelayedCount++;
-                if (!delay.equals("")) {
+            if (!delay.equals("")) {
+                Float floatDelay = Float.parseFloat(delay);
+                if (floatDelay != 0) {
+                    canceledAndDelayedCount++;
                     if (floatDelay > max) {
                         max = floatDelay;
                     }
