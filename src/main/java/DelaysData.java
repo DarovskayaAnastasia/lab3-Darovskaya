@@ -4,14 +4,15 @@ public class DelaysData implements Serializable {
     private Float maxDelay;
     private Float countCancelledAndDelayed;
     private Float countAll;
+    private String arrivalAirportName;
+    private String departureAirportName;
 
-//    private Float max;
-//    private String arrivalAirportName;
-//    private String departureAirportName;
     public DelaysData() {
         this.maxDelay = 0f;
         this.countAll = 0f;
         this.countCancelledAndDelayed = 0f;
+        this.arrivalAirportName = "";
+        this.departureAirportName = "";
     }
 
     public DelaysData(String delay) {
@@ -28,6 +29,9 @@ public class DelaysData implements Serializable {
             countCancelledAndDelayed = 1f;
         }
         countAll = 1f;
+        
+        this.arrivalAirportName = "";
+        this.departureAirportName = "";
     }
 
     public Float getMaxDelay() {

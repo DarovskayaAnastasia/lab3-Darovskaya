@@ -1,4 +1,4 @@
-public class AirportsFilesData {
+public class AirportsFilesConstants {
 
     final static String AIRPORTS_FILENAME = "L_AIRPORT_ID.csv";
     final static String DELAYS_FILENAME = "664600583_T_ONTIME_sample.csv";
