@@ -1,10 +1,7 @@
-import scala.Tuple2;
-
 import java.io.Serializable;
-import java.util.Map;
 
 public class DelaysData implements Serializable {
-    private Float delay;
+    private Float maxDelay;
     private Float max;
     private Integer countCancelledAndDelayed;
     private Integer countAll;
@@ -14,11 +11,28 @@ public class DelaysData implements Serializable {
 //    private String departureAirportName;
 
     public DelaysData(String delay) {
+        countCancelledAndDelayed = 0;
         if (!delay.isEmpty()) {
-            this.delay = Float.parseFloat(delay);
+            this.maxDelay = Float.parseFloat(delay);
+            if (maxDelay != 0f) {
+                countCancelledAndDelayed = 1;
+            }
         }
+        else
+        {
+            this.maxDelay = -1f;
+            countCancelledAndDelayed = 1;
+        }
+        countAll = 1;
     }
 
+    public Float getMaxDelay() {
+        return this.maxDelay;
+    }
+
+    public newMax(DelaysData a, DelaysData b) {
+        (a.maxDelay > b.maxDelay)? this.maxDelay = a.maxDelay : this.maxDelay = b.maxDelay;
+    }
 //
 //    public DelaysData() {
 //        this.max = 0f;

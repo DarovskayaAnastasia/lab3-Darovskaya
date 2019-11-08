@@ -33,16 +33,16 @@ public class AirportsSparkMain {
 
         Map<Integer, String> nameIdMap = nameIdPair.collectAsMap();
 
-        JavaPairRDD<Tuple2<Integer, Integer>, String> arrivalDepartureDelayPair = onTimeWithoutHeader.mapToPair(s -> {
+        JavaPairRDD<Tuple2<Integer, Integer>, DelaysData> arrivalDepartureDelayPair = onTimeWithoutHeader.mapToPair(s -> {
             Integer arrivalID = Integer.parseInt(parseLine(s, AirportsFilesData.ARRIVAL_AIRPORT_ID_ROW));
             Integer departureID = Integer.parseInt(parseLine(s, AirportsFilesData.DEPARTURE_AIRPORT_ID_ROW));
-            String delay = parseLine(s, AirportsFilesData.DELAY_ROW);
+            DelaysData delay = new DelaysData(parseLine(s, AirportsFilesData.DELAY_ROW));
             return new Tuple2<>(new Tuple2<>(arrivalID, departureID), delay);
         });
 
         JavaPairRDD<Tuple2<Integer, Integer>, DelaysData> collectedAirports = arrivalDepartureDelayPair.reduceByKey(
                 (a, b) -> {
-                    return Float.parseFloat(a) + Float.parseFloat(b);
+                    ;
 //                    if (!a.isEmpty() || !b.isEmpty() ) {
 //                        (Float.parseFloat(a) > Float.parseFloat(b)) ? a : b;
 //                    }
