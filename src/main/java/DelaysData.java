@@ -4,14 +4,19 @@ import java.io.Serializable;
 import java.util.Map;
 
 public class DelaysData implements Serializable {
+    private Float delay;
     private Float max;
     private Integer countCancelledAndDelayed;
     private Integer countAll;
+
+//    private Float max;
 //    private String arrivalAirportName;
 //    private String departureAirportName;
 
     public DelaysData(String delay) {
-
+        if (!delay.isEmpty()) {
+            this.delay = Float.parseFloat(delay);
+        }
     }
 
 //
@@ -67,10 +72,10 @@ public class DelaysData implements Serializable {
 //         arrivalAirportName = airportsNames.get(arrivalAirportID);
 //         departureAirportName = airportsNames.get(departureAirportID);
 //    }
-
-    @Override
-    public String toString() {
-        return "Arrival airport: " + arrivalAirportName + "\n Departure airport: " + departureAirportName + "\n max: " + max + "; percent: " + percent;
-    }
+//
+//    @Override
+//    public String toString() {
+//        return "Arrival airport: " + arrivalAirportName + "\n Departure airport: " + departureAirportName + "\n max: " + max + "; percent: " + percent;
+//    }
 
 }
