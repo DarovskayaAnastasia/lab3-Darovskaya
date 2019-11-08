@@ -4,14 +4,11 @@ import java.io.Serializable;
 import java.util.Map;
 
 public class DelaysData implements Serializable {
-    private Vector delays;
-    private Integer countOfDelays;
     private Float max;
-    private Float percent;
-    private Integer arrivalAirportID;
-    private Integer departureAirportID;
-    private String arrivalAirportName;
-    private String departureAirportName;
+    private Integer countCancelledAndDelayed;
+    private Integer countAll;
+//    private String arrivalAirportName;
+//    private String departureAirportName;
 
     public DelaysData(String delay) {
 
