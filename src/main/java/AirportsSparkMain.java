@@ -43,9 +43,7 @@ public class AirportsSparkMain {
         JavaPairRDD<Tuple2<Integer, Integer>, DelaysData> collectedAirports = arrivalDepartureDelayPair.reduceByKey(
                 (a, b) -> {
                     a.calculateDelays(b);
-//                    if (!a.isEmpty() || !b.isEmpty() ) {
-//                        (Float.parseFloat(a) > Float.parseFloat(b)) ? a : b;
-//                    }
+                    return a;
                 }
         );
 
