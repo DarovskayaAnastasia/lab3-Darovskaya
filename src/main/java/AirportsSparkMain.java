@@ -47,11 +47,9 @@ public class AirportsSparkMain {
                 }
         );
 
-        JavaPairRDD<Tuple2<Integer, Integer>, DelaysData> reducedData = collectedAirports.mapToPair(s -> new Tuple2<>(s._1(), new DelaysData(s._2())));
-
         final Broadcast<Map<Integer, String>> airportsBroadcasted = sc.broadcast(nameIdMap);
 
-        JavaRDD<DelaysData> result = reducedData.map(s -> {
+        JavaRDD<DelaysData> result = collectedAirports.map(s -> {
             DelaysData delaysWithAirports = s._2();
             delaysWithAirports.setAirports(s._1(), airportsBroadcasted.value());
             return delaysWithAirports;

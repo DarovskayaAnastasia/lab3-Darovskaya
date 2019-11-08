@@ -54,7 +54,7 @@ public class DelaysData implements Serializable {
         this.countAll += this.countAll + b.countAll;
 
     }
-    
+
     public void setAirports(Tuple2<Integer, Integer> airportsIDs, Map<Integer, String> airportsNames) {
          arrivalAirportID = airportsIDs._1();
          departureAirportID = airportsIDs._2();
