@@ -1,4 +1,7 @@
+import scala.Tuple2;
+
 import java.io.Serializable;
+import java.util.Map;
 
 public class DelaysData implements Serializable {
     private Float maxDelay;
@@ -6,6 +9,9 @@ public class DelaysData implements Serializable {
     private Float countAll;
     private String arrivalAirportName;
     private String departureAirportName;
+    private Integer arrivalAirportID;
+    private Integer departureAirportID;
+
 
     public DelaysData() {
         this.maxDelay = 0f;
@@ -13,6 +19,8 @@ public class DelaysData implements Serializable {
         this.countCancelledAndDelayed = 0f;
         this.arrivalAirportName = "";
         this.departureAirportName = "";
+        this.arrivalAirportID = 0;
+        this.departureAirportID = 0;
     }
 
     public DelaysData(String delay) {
@@ -32,6 +40,8 @@ public class DelaysData implements Serializable {
 
         this.arrivalAirportName = "";
         this.departureAirportName = "";
+        this.arrivalAirportID = 0;
+        this.departureAirportID = 0;
     }
 
     public Float getMaxDelay() {
@@ -91,13 +101,13 @@ public class DelaysData implements Serializable {
 //        return  this.percent;
 //    }
 //
-//    public void setAirports(Tuple2<Integer, Integer> airportsIDs, Map<Integer, String> airportsNames) {
-//         arrivalAirportID = airportsIDs._1();
-//         departureAirportID = airportsIDs._2();
-//         arrivalAirportName = airportsNames.get(arrivalAirportID);
-//         departureAirportName = airportsNames.get(departureAirportID);
-//    }
-//
+    public void setAirports(Tuple2<Integer, Integer> airportsIDs, Map<Integer, String> airportsNames) {
+         arrivalAirportID = airportsIDs._1();
+         departureAirportID = airportsIDs._2();
+         arrivalAirportName = airportsNames.get(arrivalAirportID);
+         departureAirportName = airportsNames.get(departureAirportID);
+    }
+
     @Override
     public String toString() {
         return "Arrival airport: " + arrivalAirportName + "\n Departure airport: " + departureAirportName + "\n max: " + maxDelay + "; percent: " + countCancelledAndDelayed*100/countAll;
