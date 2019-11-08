@@ -2,7 +2,6 @@ import java.io.Serializable;
 
 public class DelaysData implements Serializable {
     private Float maxDelay;
-    private Float max;
     private Integer countCancelledAndDelayed;
     private Integer countAll;
 
@@ -34,7 +33,7 @@ public class DelaysData implements Serializable {
         this.maxDelay = (a.maxDelay > b.maxDelay)? a.maxDelay : b.maxDelay;
         this.countCancelledAndDelayed += a.countCancelledAndDelayed + b.countCancelledAndDelayed;
         this.countAll += a.countAll + b.countAll;
-        
+
     }
 //
 //    public DelaysData() {
