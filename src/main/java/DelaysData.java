@@ -2,37 +2,42 @@ import java.io.Serializable;
 
 public class DelaysData implements Serializable {
     private Float maxDelay;
-    private Integer countCancelledAndDelayed;
-    private Integer countAll;
+    private Float countCancelledAndDelayed;
+    private Float countAll;
 
 //    private Float max;
 //    private String arrivalAirportName;
 //    private String departureAirportName;
+    public DelaysData() {
+        this.maxDelay = 0f;
+        this.countAll = 0f;
+        this.countCancelledAndDelayed = 0f;
+    }
 
     public DelaysData(String delay) {
-        countCancelledAndDelayed = 0;
+        countCancelledAndDelayed = 0f;
         if (!delay.isEmpty()) {
             this.maxDelay = Float.parseFloat(delay);
             if (maxDelay != 0f) {
-                countCancelledAndDelayed = 1;
+                countCancelledAndDelayed = 1f;
             }
         }
         else
         {
             this.maxDelay = -1f;
-            countCancelledAndDelayed = 1;
+            countCancelledAndDelayed = 1f;
         }
-        countAll = 1;
+        countAll = 1f;
     }
 
     public Float getMaxDelay() {
         return this.maxDelay;
     }
 
-    public void calculateDelays(DelaysData a, DelaysData b) {
-        this.maxDelay = (a.maxDelay > b.maxDelay)? a.maxDelay : b.maxDelay;
-        this.countCancelledAndDelayed += a.countCancelledAndDelayed + b.countCancelledAndDelayed;
-        this.countAll += a.countAll + b.countAll;
+    public void calculateDelays(DelaysData b) {
+        this.maxDelay = (this.maxDelay > b.maxDelay)? this.maxDelay : b.maxDelay;
+        this.countCancelledAndDelayed += this.countCancelledAndDelayed + b.countCancelledAndDelayed;
+        this.countAll += this.countAll + b.countAll;
 
     }
 //
