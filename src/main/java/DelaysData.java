@@ -30,8 +30,11 @@ public class DelaysData implements Serializable {
         return this.maxDelay;
     }
 
-    public newMax(DelaysData a, DelaysData b) {
-        (a.maxDelay > b.maxDelay)? this.maxDelay = a.maxDelay : this.maxDelay = b.maxDelay;
+    public void calculateDelays(DelaysData a, DelaysData b) {
+        this.maxDelay = (a.maxDelay > b.maxDelay)? a.maxDelay : b.maxDelay;
+        this.countCancelledAndDelayed += a.countCancelledAndDelayed + b.countCancelledAndDelayed;
+        this.countAll += a.countAll + b.countAll;
+        
     }
 //
 //    public DelaysData() {
