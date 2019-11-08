@@ -29,7 +29,7 @@ public class DelaysData implements Serializable {
             countCancelledAndDelayed = 1f;
         }
         countAll = 1f;
-        
+
         this.arrivalAirportName = "";
         this.departureAirportName = "";
     }
@@ -98,9 +98,9 @@ public class DelaysData implements Serializable {
 //         departureAirportName = airportsNames.get(departureAirportID);
 //    }
 //
-//    @Override
-//    public String toString() {
-//        return "Arrival airport: " + arrivalAirportName + "\n Departure airport: " + departureAirportName + "\n max: " + max + "; percent: " + percent;
-//    }
+    @Override
+    public String toString() {
+        return "Arrival airport: " + arrivalAirportName + "\n Departure airport: " + departureAirportName + "\n max: " + maxDelay + "; percent: " + countCancelledAndDelayed*100/countAll;
+    }
 
 }
