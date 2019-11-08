@@ -18,29 +18,29 @@ public class AirportsSparkMain {
         SparkConf conf = new SparkConf().setAppName("lab3");
         JavaSparkContext sc = new JavaSparkContext(conf);
 
-        JavaRDD<String> airportsFile = sc.textFile("L_AIRPORT_ID.csv");
-        JavaRDD<String> onTimeFile = sc.textFile("664600583_T_ONTIME_sample.csv");
+        JavaRDD<String> airportsFile = sc.textFile(AirportsFilesData.AIRPORTS_FILENAME);
+        JavaRDD<String> onTimeFile = sc.textFile(AirportsFilesData.DELAYS_FILENAME);
 
         JavaRDD<String> airportsWithoutHeader = removeCSVHeader(airportsFile);
         JavaRDD<String> onTimeWithoutHeader = removeCSVHeader(onTimeFile);
 
 
         JavaPairRDD<Integer, String> nameIdPair = airportsWithoutHeader.mapToPair(s -> {
-            Integer airportID = Integer.parseInt(parseLine(s, Common.AIRPORT_ID_ROW));
-            String airportName = parseLine(s, Common.AIRPORT_NAME_ROW);
+            Integer airportID = Integer.parseInt(parseLine(s, AirportsFilesData.AIRPORT_ID_ROW));
+            String airportName = parseLine(s, AirportsFilesData.AIRPORT_NAME_ROW);
             return new Tuple2<>(airportID, airportName);
         });
 
         Map<Integer, String> nameIdMap = nameIdPair.collectAsMap();
 
         JavaPairRDD<Tuple2<Integer, Integer>, String> arrivalDepartureDelayPair = onTimeWithoutHeader.mapToPair(s -> {
-            Integer arrivalID = Integer.parseInt(parseLine(s, Common.ARRIVAL_AIRPORT_ID_ROW));
-            Integer departureID = Integer.parseInt(parseLine(s, Common.DEPARTURE_AIRPORT_ID_ROW));
-            String delay = parseLine(s, Common.DELAY_ROW);
+            Integer arrivalID = Integer.parseInt(parseLine(s, AirportsFilesData.ARRIVAL_AIRPORT_ID_ROW));
+            Integer departureID = Integer.parseInt(parseLine(s, AirportsFilesData.DEPARTURE_AIRPORT_ID_ROW));
+            String delay = parseLine(s, AirportsFilesData.DELAY_ROW);
             return new Tuple2<>(new Tuple2<>(arrivalID, departureID), delay);
         });
 
-        JavaPairRDD<Tuple2<Integer, Integer>, String> collectedAirports = arrivalDepartureDelayPair.reduceByKey(
+        JavaPairRDD<Tuple2<Integer, Integer>, DelaysData> collectedAirports = arrivalDepartureDelayPair.reduceByKey(
                 (a, b) -> a + " " + b
         );
 
@@ -58,20 +58,8 @@ public class AirportsSparkMain {
 
     }
 
-//    private static final String parseLine(String line, int numberOfRow) throws IOException {
-//
-//        String result = "";
-//
-//        CSVParser parser = CSVParser.parse(line, CSVFormat.RFC4180);
-//        for (CSVRecord record : parser) {
-//            result = record.get(numberOfRow);
-//        }
-//
-//        return result;
-//    }
-
     private static final String parseLine(String line, int numberOfRow) {
-        if (numberOfRow == Common.AIRPORT_ID_ROW || numberOfRow == Common.AIRPORT_NAME_ROW) {
+        if (numberOfRow == AirportsFilesData.AIRPORT_ID_ROW || numberOfRow == AirportsFilesData.AIRPORT_NAME_ROW) {
             String[] rows = line.split("\",");
             for (int i = 0; i < rows.length; ++i) {
                 rows[i] = rows[i].replaceAll("\"", "");
@@ -89,3 +77,16 @@ public class AirportsSparkMain {
     }
 
 }
+
+
+//    private static final String parseLine(String line, int numberOfRow) throws IOException {
+//
+//        String result = "";
+//
+//        CSVParser parser = CSVParser.parse(line, CSVFormat.RFC4180);
+//        for (CSVRecord record : parser) {
+//            result = record.get(numberOfRow);
+//        }
+//
+//        return result;
+//    }
