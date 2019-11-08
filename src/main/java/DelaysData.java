@@ -1,9 +1,7 @@
-import org.apache.jute.compiler.JVector;
 import scala.Tuple2;
 
 import java.io.Serializable;
 import java.util.Map;
-import java.util.Vector;
 
 public class DelaysData implements Serializable {
     private Vector delays;
@@ -16,10 +14,7 @@ public class DelaysData implements Serializable {
     private String departureAirportName;
 
     public DelaysData(String delay) {
-        if (!delay.isEmpty()) {
-            delays.addElement(Float.parseFloat(delay));
-        }
-        countOfDelays++;
+
     }
 
 //
