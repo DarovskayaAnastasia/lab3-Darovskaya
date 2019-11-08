@@ -3,9 +3,10 @@ import scala.Tuple2;
 
 import java.io.Serializable;
 import java.util.Map;
+import java.util.Vector;
 
 public class DelaysData implements Serializable {
-    private JVector delay; 
+    private Vector delay = Vector();
     private Float max;
     private Float percent;
     private Integer arrivalAirportID;
