@@ -15,24 +15,11 @@ public class DelaysData implements Serializable {
     private String arrivalAirportName;
     private String departureAirportName;
 
-    public DelaysData() {
-        this.delays = new Vector();
-        this.max = 0f;
-        this.percent = 0f;
-        this.arrivalAirportID = 0;
-        this.departureAirportID = 0;
-        this.arrivalAirportName = null;
-        this.departureAirportName = null;
-    }
-    public addDelay(String delay) {
+    public DelaysData(String delay) {
         if (!delay.isEmpty()) {
             delays.addElement(Float.parseFloat(delay));
         }
         countOfDelays++;
-    }
-
-    public getMax() {
-
     }
 
 //
