@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Vector;
 
 public class DelaysData implements Serializable {
-    private Vector delay = Vector();
+    private Vector delay = new Vector();
     private Float max;
     private Float percent;
     private Integer arrivalAirportID;
@@ -15,7 +15,7 @@ public class DelaysData implements Serializable {
     private String departureAirportName;
 
     public DelaysData(String delay) {
-
+        
     }
 
 //
